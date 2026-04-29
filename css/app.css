@@ -1,0 +1,233 @@
+@import "normalize.css";
+
+:root {
+    --light-bg-color: #faf7ff;
+    --light-text-color: #353535;
+    --dark-bg-color: #353535;
+    --dark-text-color: #faf7ff;
+    --scrollbar-color: #353535;
+    --animation-speed: 300ms;
+    --error-color: #ff0000;
+}
+
+html {
+    box-sizing: border-box;
+    cursor: default;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: calc(100vw/390);
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: 300;
+    font-feature-settings: "kern";
+    height: 100%;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+    scrollbar-width: thin;
+    text-rendering: optimizelegibility;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: auto;
+
+    @media (min-width: 768px) {
+        font-size: 1px;
+    }
+}
+
+body {
+    background-color: var(--light-bg-color);
+    color: var(--light-text-color);
+    font-size: 18rem;
+    scrollbar-color: var(--scrollbar-color) #fff;
+
+    &.arlight_dark {
+        background-color: var(--dark-bg-color);
+        color: var(--dark-text-color);
+
+        header {
+            background-color: var(--dark-bg-color);
+        }
+
+        .arlight__theme-switcher-switch {
+            border-color: var(--dark-text-color);
+        }
+
+        .arlight__theme-switcher-toggle {
+            background-color: var(--dark-text-color);
+            transform: translateX(40rem);
+        }
+
+        .arlight__theme-switcher-badge,
+        .arlight__tab-counter-value {
+            filter: invert(100%);
+        }
+    }
+}
+
+header {
+    background-color: var(--light-bg-color);
+    display: flow-root;
+    position: sticky;
+    top: 0;
+    padding: 16rem;
+
+    & h1 {
+        margin: 0 0 16rem;
+        text-align: center;
+
+        @media (min-width: 768px) {
+            float: left;
+            margin: 0;
+        }
+
+    }
+}
+
+main {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40rem;
+    display: flex;
+    flex-direction: column;
+    gap: 40rem;
+}
+
+/* Switcher styles*/
+
+.arlight__theme-switcher {
+    align-items: center;
+    display: flex;
+    gap: 8rem;
+    float: right;
+}
+
+.arlight__theme-switcher-badge {
+    transition: filter var(--animation-speed) ease-out;
+    width: 20rem;
+}
+
+.arlight__theme-switcher-switch {
+    border-radius: 20rem;
+    border: 1rem solid var(--light-text-color);
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    height: 40rem;
+    padding: 2rem;
+    width: 80rem;
+}
+
+.arlight__theme-switcher-toggle {
+    background-color: var(--light-text-color);
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 34rem;
+    width: 34rem;
+    transition: transform var(--animation-speed) ease-out;
+}
+
+/* Cards styles */
+
+.arlight__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20rem;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+}
+
+.arlight__card {
+    border-radius: 20rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0rem 2rem 8rem 0rem;
+    box-sizing: border-box;
+    padding: 20rem;
+    flex: 0 1 100%;
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (min-width: 768px) {
+        flex: 0 1 calc(50% - 10rem);
+    }
+
+    @media (min-width: 1001px) {
+        flex: 0 1 calc(25% - 15rem);
+    }
+}
+
+.arlight__card-button {
+    border-radius: 4rem;
+    padding: 8rem 16rem;
+}
+
+.arlight__card-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+/* Subscription styles */
+.arlight__subscription {
+    box-shadow: rgba(99, 99, 99, 0.2) 0rem 2rem 8rem 0rem;
+    padding: 20rem;
+    border-radius: 20rem;
+}
+
+.arlight__subscription-button,
+.arlight__subscription-input {
+    border-radius: 4rem;
+    padding: 8rem 16rem;
+}
+
+.arlight__subscription-button {
+    margin-top: 16rem;
+}
+
+.arlight__subscription-input {
+    max-width: 100%;
+    box-sizing: border-box;
+
+    &:invalid~.arlight__subscription-input-error {
+        opacity: 1;
+    }
+}
+
+.arlight__subscription-input-error {
+    font-size: 14rem;
+    opacity: 0;
+    color: var(--error-color);
+    padding: 8rem 0;
+    transition: opacity var(--animation-speed) ease-out;
+}
+
+/* Tab counter styles */
+.arlight__tab-counter {
+    align-items: center;
+    display: flex;
+    gap: 8rem;
+    float: left;
+
+    @media (min-width: 768px) {
+        float: right;
+        margin-right: 8rem;
+    }
+}
+
+.arlight__tab-counter-value {
+    background-color: var(--dark-bg-color);
+    border-radius: 20rem;
+    color: var(--dark-text-color);
+    line-height: 40rem;
+    text-align: center;
+    height: 40rem;
+    padding: 0 16rem;
+}
